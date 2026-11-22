@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071424">
+  <meta name="description" content="ILION v5 Public Lab — an interactive, synthetic demonstration of deterministic pre-execution authorization for AI agents. Explore CAP, CGC, PCL, Gate, and an experimental session budget.">
+  <meta property="og:title" content="ILION v5 Public Lab — Does the action have authority?">
+  <meta property="og:description" content="A working browser-based research demonstration of layered AI-agent authorization. Synthetic scenarios. No production data or private engines.">
+  <title>ILION v5 Public Lab — Deterministic Execution Authorization</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="engine.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="frame">
+    <header class="site-head">
+      <a class="brand" href="#top" aria-label="ILION Public Lab home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36" width="27" height="27"><path d="M18 2 31 8v10c0 8-5.5 13-13 16C10.5 31 5 26 5 18V8Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="m11 18 5 5 10-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>ILION <span class="brand-sub">/ PUBLIC LAB</span></span></a>
+      <nav class="nav-links" aria-label="Main navigation"><a href="#experience">Try the lab</a><a href="#method">What this proves</a><a href="https://zenodo.org/records/23960729" target="_blank" rel="noopener noreferrer">Research <span aria-hidden="true">↗</span></a></nav>
+      <a href="mailto:contact@ilion-project.org?subject=ILION%20v5%20public%20lab%20collaboration" class="contact-link">Discuss a pilot <span aria-hidden="true">↗</span></a>
+    </header>
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="signal-dot"></span> MODEL-AGNOSTIC RESEARCH DEMONSTRATION <span class="eyebrow-end">/ v5 PUBLIC LAB</span></div>
+          <h1 id="hero-title">THE AGENT HAS ACCESS.<br><span>DOES THE ACTION<br>HAVE AUTHORITY?</span></h1>
+          <p>See how independent, deterministic checks can authorize — or stop — a proposed AI-agent operation <strong>before a synthetic execution effect occurs.</strong></p>
+          <div class="hero-cta"><a class="btn btn-primary" href="#experience">Explore scenarios <span aria-hidden="true">↗</span></a><a class="btn btn-quiet" href="#method">How it works <span aria-hidden="true">↓</span></a></div>
+          <div class="hero-caption"><span class="dot-indicator"></span> Interactive · No sign-in · No API key · No external calls</div>
+        </div>
+        <div class="hero-visual" aria-label="ILION execution authorization concept">
+          <div class="visual-top"><span>CONTROL PLANE / ILLUSTRATIVE</span><span class="mono">ILION:ACTIVE</span></div>
+          <div class="agent-node"><span class="node-icon">▣</span><div><b>AI AGENT</b><small>Proposes an operation</small></div><span class="node-dots">···</span></div>
+          <div class="flow-stem"></div>
+          <div class="pipeline-preview" id="hero-pipeline"><span>CAP</span><i></i><span>CGC</span><i></i><span>PCL</span><i></i><span>GATE</span><i></i><span class="preview-experiment">SRM*</span></div>
+          <div class="flow-stem"></div>
+          <div class="decision-preview"><div><small>EXECUTION BOUNDARY</small><strong>ALLOW <span class="slash">/</span> BLOCK</strong></div><span class="check-icon">✓</span></div>
+          <div class="visual-caption">Independent checks. An explicit veto. No effect on BLOCK.</div>
+        </div>
+      </section>
+      <section class="lab" id="experience" aria-labelledby="lab-title">
+        <div class="section-title"><div><div class="section-kicker">01 / INTERACTIVE RESEARCH LAB</div><h2 id="lab-title">Test the execution boundary.</h2><p>Choose a synthetic request, change its evidence, and run the same public rules each time.</p></div><span class="section-tag">DETERMINISTIC / LOCAL ONLY</span></div>
+        <div class="lab-layout">
+          <aside class="panel scenario-panel" aria-labelledby="scenario-heading"><div class="panel-head"><span class="panel-count">01</span><h3 id="scenario-heading">Choose a scenario</h3></div><div id="scenario-list" class="scenario-list" role="group" aria-label="Synthetic authorization scenarios"></div><div class="side-note"><span class="note-icon">ⓘ</span><p>All identities, records, actions, and destinations in this lab are fictional.</p></div></aside>
+          <section class="panel work-panel" aria-labelledby="work-heading">
+            <div class="panel-head panel-head-between"><div class="panel-head-inner"><span class="panel-count">02</span><h3 id="work-heading">Inspect & modify the request</h3></div><button type="button" id="reset-request" class="mini-btn">↺ Reset scenario</button></div>
+            <div class="panel-content">
+              <div class="request-title-row"><div><div class="input-subtitle">PROPOSED TOOL CALL</div><h4 id="current-scenario-title">Authorized case review</h4></div><span id="current-scenario-tag" class="pill pill-neutral">RESEARCH CASE</span></div>
+              <p id="scenario-description" class="scenario-description"></p>
+              <form id="request-form" autocomplete="off">
+                <div class="form-grid">
+                  <label>Agent role<select name="role"><option value="kyc_analyst">KYC Analyst Agent</option><option value="mortgage_assistant">Mortgage Assistant</option><option value="operations_agent">Operations Agent</option></select></label>
+                  <label>Operation<select name="action"><option value="review">Review</option><option value="read">Read</option><option value="export">Export</option><option value="delete">Delete</option></select></label>
+                  <label>Target resource<select name="target"><option value="kyc_case">KYC Case #104</option><option value="mortgage_file">Mortgage File #208</option><option value="audit_log">Audit Log #034</option></select></label>
+                  <label>Destination<select name="destination"><option value="internal">Internal workspace</option><option value="approved_partner">Approved partner</option><option value="external">Unapproved external</option></select></label>
+                </div>
+                <details class="evidence-box" id="evidence-box"><summary><span><b>Authorization evidence</b><small>Issuer, request binding, identity scope, delegated permission</small></span><span class="summary-chevron">⌄</span></summary><div class="evidence-grid">
+                  <label>Context issuer<select name="issuer"><option value="trusted_registry">Trusted demo registry</option><option value="unknown_source">Unrecognized source</option></select></label>
+                  <label>Attestation age (min)<input name="ageMinutes" type="number" min="0" max="999" step="1" value="5"></label>
+                  <label>Attested action<select name="boundAction"><option value="review">Review</option><option value="read">Read</option><option value="export">Export</option><option value="delete">Delete</option></select></label>
+                  <label>Attested target<select name="boundTarget"><option value="kyc_case">KYC Case #104</option><option value="mortgage_file">Mortgage File #208</option><option value="audit_log">Audit Log #034</option></select></label>
+                  <label>Identity claim<select name="identityClaim"><option value="true">Present</option><option value="false">Missing</option></select></label>
+                  <label>Identity target scope<select name="identityTarget"><option value="kyc_case">KYC Case #104</option><option value="mortgage_file">Mortgage File #208</option><option value="audit_log">Audit Log #034</option></select></label>
+                  <label>Delegation claim<select name="delegationClaim"><option value="true">Present</option><option value="false">Missing</option></select></label>
+                  <label>Delegated operation<select name="delegationAction"><option value="review">Review</option><option value="read">Read</option><option value="export">Export</option><option value="delete">Delete</option></select></label>
+                  <label>Delegated target<select name="delegationTarget"><option value="kyc_case">KYC Case #104</option><option value="mortgage_file">Mortgage File #208</option><option value="audit_log">Audit Log #034</option></select></label>
+                </div><p class="evidence-disclaimer">This public demo uses explicit field matching. It does not verify signed credentials or expose ILION’s non-public CAP/CGC engines.</p></details>
+                <div class="form-actions"><button class="btn btn-primary btn-execute" type="submit"><span>▶</span> Run authorization</button><button class="btn btn-outline" type="button" id="sync-evidence">Align demo evidence to request</button></div>
+              </form>
+              <div class="scenario-hint"><span>TRY THIS</span><p id="scenario-hint"></p></div>
+            </div>
+          </section>
+          <section class="panel result-panel" aria-labelledby="decision-heading">
+            <div class="panel-head panel-head-between"><div class="panel-head-inner"><span class="panel-count">03</span><h3 id="decision-heading">Decision trace</h3></div><span class="mono trace-indicator" id="trace-indicator">AWAITING RUN</span></div>
+            <div class="panel-content result-content">
+              <div class="decision-banner idle" id="decision-banner" role="status" aria-live="polite"><div><div class="decision-label">LATEST VERDICT</div><strong id="decision-verdict">READY</strong><p id="decision-reason">Select a scenario and run the authorization checks.</p></div><span id="decision-symbol">◇</span></div>
+              <div class="pipeline-stack" id="pipeline-stack"></div>
+              <div class="reason-box" id="reason-box"><div class="reason-title">EXPLAINABLE RESULT</div><p id="reason-detail">Each evaluated layer returns a reason. Mandatory failure stops the remaining checks.</p></div>
+            </div>
+          </section>
+        </div>
+        <div class="telemetry-grid">
+          <div class="panel telemetry-panel"><div class="telemetry-heading"><div><div class="section-kicker">SYNTHETIC EFFECT LEDGER</div><h3>Did the action actually execute?</h3></div><button class="mini-btn" id="reset-session" type="button">↺ Reset session</button></div><div class="metric-row"><div><strong id="metric-effects">0</strong><span>Allowed synthetic effects</span></div><div><strong id="metric-blocks">0</strong><span>Blocked attempts</span></div><div><strong id="metric-exports">0 / 2</strong><span>Session export budget*</span></div></div><div class="ledger-list" id="ledger-list" aria-live="polite"><p class="empty-ledger">No synthetic operations recorded yet. Run a scenario to inspect the result.</p></div><div class="ledger-footer"><span>BLOCK does not append an execution effect.</span><button id="download-log" type="button" class="link-button">Export session JSON ↓</button></div></div>
+          <div class="panel temporal-panel"><div class="section-kicker">EXPERIMENTAL / TRANSPARENT DEMO</div><h3>Session authorization, illustrated.</h3><p>The optional fifth step implements a simple <strong>two-export demonstration budget</strong>. It is <u>not</u> the patented or unpublished Session Risk Memory algorithm, and it does not establish incremental security benefit.</p><label class="toggle-row"><span><b>Enable illustrative session budget</b><small>Only synthetic exports count toward this limit.</small></span><input type="checkbox" id="temporal-enabled" checked><span class="toggle-ui" aria-hidden="true"></span></label><div class="temporal-footnote">*SRM appears in the architectural map; this deliberately simple budget is only a stand-in for the public lab.</div></div>
+        </div>
+      </section>
+      <section id="method" class="method-section" aria-labelledby="method-title"><div class="section-kicker">02 / RESEARCH SCOPE</div><h2 id="method-title">A real decision path.<br><span>Not a production-security claim.</span></h2><div class="method-grid"><article><span class="method-number">01</span><h3>Deterministic evaluation</h3><p>Every run executes a documented, local JavaScript policy-and-evidence function for each stage. Change the fields and the decision can change.</p></article><article><span class="method-number">02</span><h3>Actual synthetic containment</h3><p>ALLOW appends an entry to the in-browser synthetic effects ledger. BLOCK appends no execution effect. Nothing is written to bank systems or remote services.</p></article><article><span class="method-number">03</span><h3>Deliberately limited scope</h3><p>No real credential attestation, encrypted claims, proprietary authorization engines, real tool sandbox, or production enforcement is included in this public demonstration.</p></article></div><div class="research-banner"><div><span class="section-kicker">ILION v5 — Full Architecture Video Demonstration</span><h3>From demonstration to independent validation.</h3><p>This public lab illustrates ILION V5's multidimensional approach to deterministic pre-execution authorization through five distinct layers: CAP, CGC, PCL, Gate, and SRM. All scenarios and rules are synthetic and illustrative. The non-public research engines are <strong>not included here</strong>. Enterprise claims require comparisons against correctly configured IAM and policy-engine baselines.</p></div><a href="https://zenodo.org/records/23017604" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Video Demonstration ↗</a></div></section>
+      <section class="closing"><div class="section-kicker">03 / TECHNOLOGY TRANSFER</div><h2>Build a safer execution boundary.<br><span>Help evaluate what works.</span></h2><p>Seeking independent reviewers, applied research collaborators, AI security teams, and organizations interested in controlled pilots or technology licensing.</p><div class="closing-actions"><a class="btn btn-primary" href="mailto:contact@ilion-project.org?subject=ILION%20v5%20public%20lab%20collaboration">Contact the research lead ↗</a><a class="btn btn-quiet" href="https://github.com/Athonitul/ilion-framework-simulator" target="_blank" rel="noopener noreferrer">Earlier framework simulator ↗</a></div><div class="project-references"><span>3 published Romanian patent applications · not granted patents</span><span>Research artifact · Synthetic scenarios · No confidential implementation disclosed</span></div></section>
+    </main>
+    <footer class="footer"><div class="brand">ILION <span class="brand-sub">/ v5 PUBLIC LAB</span></div><span>© 2026 Adrian Chitan · Independent research demonstration</span><div><a href="https://zenodo.org/records/23017604" target="_blank" rel="noopener noreferrer">Zenodo</a><a href="https://ilion-project.org" target="_blank" rel="noopener noreferrer">Project</a><a href="mailto:contact@ilion-project.org">Contact</a></div></footer>
+  </div>
+</body>
+</html>
