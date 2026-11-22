@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*backup*
+.env
+.env.*
+node_modules/
+coverage/
+*.zip
